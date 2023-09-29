@@ -17,5 +17,5 @@ main() {
     ],
   );
 
-  runApp(MaterialApp.router(routerConfig: router));
+  runApp(ProviderScope(child: MaterialApp.router(routerConfig: router)));
 }
