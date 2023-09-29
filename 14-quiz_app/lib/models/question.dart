@@ -7,6 +7,6 @@ class Question {
   Question.fromJson(Map<String, dynamic> jsonData)
       : id = jsonData['id'],
         question = jsonData['question'],
-        options = jsonData['options'],
+        options = List<String>.from(jsonData['options']),
         answerPostPath = jsonData['answer_post_path'];
 }

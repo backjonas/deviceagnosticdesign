@@ -22,7 +22,7 @@ class TopicList extends StatelessWidget {
                 children: snapshot.data!
                     .map((topic) => ElevatedButton(
                           child: Text(topic.name),
-                          onPressed: () => context.go('/questions/${topic.id}'),
+                          onPressed: () => context.go('/question/${topic.id}'),
                         ))
                     .toList());
           }

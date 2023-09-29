@@ -5,16 +5,17 @@ import 'screens/home_screen.dart';
 import 'screens/question_screen.dart';
 import 'screens/statistics_screen.dart';
 
-final countProvider = StateProvider<int>((ref) => 0);
-
 main() {
   final router = GoRouter(
     routes: [
-      GoRoute(path: '/', builder: (context, state) => HomeScreen()),
-      GoRoute(path: '/question', builder: (context, state) => QuestionScreen()),
+      GoRoute(path: '/', builder: (context, state) => const HomeScreen()),
+      GoRoute(
+          path: '/question/:topicId',
+          builder: (context, state) =>
+              QuestionScreen(int.parse(state.pathParameters['topicId']!))),
       GoRoute(path: '/stats', builder: (context, state) => StatisticsScreen())
     ],
   );
 
-  runApp(ProviderScope(child: MaterialApp.router(routerConfig: router)));
+  runApp(MaterialApp.router(routerConfig: router));
 }
