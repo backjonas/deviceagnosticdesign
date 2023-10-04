@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
-import '../api/quiz_api.dart';
+import '../services/quiz_api.dart';
 import '../models/question.dart';
 import '../providers/correct_count.dart';
 
