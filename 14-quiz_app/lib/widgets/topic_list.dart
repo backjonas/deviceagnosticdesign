@@ -18,13 +18,17 @@ class TopicList extends StatelessWidget {
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return const Text("No topics available");
           } else {
-            return Column(
-                children: snapshot.data!
-                    .map((topic) => ElevatedButton(
-                          child: Text(topic.name),
-                          onPressed: () => context.go('/question/${topic.id}'),
-                        ))
-                    .toList());
+            return Column(children: [
+              Container(
+                  margin: const EdgeInsets.only(top: 5, bottom: 10),
+                  child: Text('Select a topic to begin answering questions')),
+              ...snapshot.data!.map((topic) => Container(
+                  margin: const EdgeInsets.all(5),
+                  child: ElevatedButton(
+                    child: Text(topic.name),
+                    onPressed: () => context.go('/question/${topic.id}'),
+                  )))
+            ]);
           }
         });
   }

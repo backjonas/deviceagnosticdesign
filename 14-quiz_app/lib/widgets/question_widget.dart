@@ -25,7 +25,9 @@ class QuestionWidget extends ConsumerWidget {
           } else {
             final question = snapshot.data!;
             return Column(children: [
-              Text(question.question),
+              Container(
+                  margin: const EdgeInsets.only(top: 5, bottom: 10),
+                  child: Text(question.question)),
               OptionList(question.options, question.answerPostPath),
               ResponseWidget(topicId)
             ]);
@@ -51,13 +53,17 @@ class ResponseWidget extends ConsumerWidget {
             answerResult
                 ? Column(
                     children: [
-                      Text('The answer was correct'),
+                      Container(
+                          margin: const EdgeInsets.only(top: 5, bottom: 10),
+                          child: Text('The answer was correct')),
                       ElevatedButton(
                           child: Text('Next question'),
                           onPressed: () => _nextQuestion(context, ref)),
                     ],
                   )
-                : Text('The answer was incorrect'),
+                : Container(
+                    margin: const EdgeInsets.all(5),
+                    child: Text('The answer was incorrect')),
           ])
         : const Text('');
   }
@@ -83,10 +89,12 @@ class OptionList extends ConsumerWidget {
 
     return answerResult != true
         ? Column(children: [
-            ...options.map((option) => ElevatedButton(
+            ...options.map((option) => Container(
+                margin: const EdgeInsets.all(5),
+                child: ElevatedButton(
                   child: Text(option),
                   onPressed: () => _answerQuestion(option, answerPostPath, ref),
-                )),
+                ))),
           ])
         : Text('');
   }
