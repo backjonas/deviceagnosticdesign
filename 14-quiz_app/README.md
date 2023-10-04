@@ -1,16 +1,18 @@
 # quiz_app
 
-A new Flutter project.
+The application consists of a list of topics, with a number of questions belonging to each topic. The list of topics is visible at `/`, and questions can be found at `/question/:topicId`, where `topicId` is the id of the topic the question belongs to. The topics and questions are fetched from `https://dad-quiz-api.deno.dev/topics/4/questions`. The correct number of answers are persisted using SharedPreferences, and the number of correct answers can be found at `/stats`
 
-## Getting Started
+## Dependencies
 
-This project is a starting point for a Flutter application.
+The project has the following dependencies (include these in `pubspec.yaml`)
 
-A few resources to get you started if this is your first Flutter project:
+```
+dependencies:
+  flutter:
+    sdk: flutter
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+  go_router: ^11.1.2
+  flutter_riverpod: ^2.4.1
+  http: ^1.1.0
+  shared_preferences: ^2.2.1
+```
