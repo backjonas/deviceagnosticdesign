@@ -1,8 +1,8 @@
 import 'package:go_router/go_router.dart';
-import '../screens/home_screen.dart';
-import '../screens/category_list_screen.dart';
-import '../screens/recipe_list_screen.dart';
-import '../screens/recipe_screen.dart';
+import 'package:recipe_app/screens/home_screen.dart';
+import 'package:recipe_app/screens/category_list_screen.dart';
+import 'package:recipe_app/screens/recipe_list_screen.dart';
+import 'package:recipe_app/screens/recipe_screen.dart';
 
 final router = GoRouter(
   routes: [
@@ -12,10 +12,10 @@ final router = GoRouter(
     GoRoute(
         path: '/category/:categoryId',
         builder: (context, state) =>
-            RecipeListScreen(int.parse(state.pathParameters['categoryId']!))),
+            RecipeListScreen(state.pathParameters['categoryId']!)),
     GoRoute(
         path: '/recipe/:recipeId',
         builder: (context, state) =>
-            RecipeScreen(int.parse(state.pathParameters['recipeId']!)))
+            RecipeScreen(state.pathParameters['recipeId']!))
   ],
 );

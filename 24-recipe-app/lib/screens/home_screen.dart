@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../layout/screen_wrapper.dart';
+import 'package:recipe_app/layout/screen_wrapper.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen();
