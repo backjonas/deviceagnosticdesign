@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:recipe_app/services/recipe_api.dart';
 import 'package:recipe_app/models/recipe.dart';
 
@@ -22,23 +21,32 @@ class RecipeWidget extends StatelessWidget {
             return Column(children: [
               Container(
                 margin: const EdgeInsets.all(5),
-                child: Text(snapshot.data![0].name),
+                child: Text(
+                  style: TextStyle(fontSize: 36),
+                  snapshot.data![0].name,
+                ),
               ),
               Container(
                 margin: const EdgeInsets.all(5),
-                child: Text(snapshot.data![0].picture),
+                child: Placeholder(),
               ),
               Container(
-                margin: const EdgeInsets.all(5),
-                child: const Text("Ingredients"),
+                margin: const EdgeInsets.fromLTRB(5, 15, 5, 5),
+                child: const Text(
+                  style: TextStyle(fontSize: 18),
+                  "Ingredients",
+                ),
               ),
               Container(
                 margin: const EdgeInsets.all(5),
                 child: Text(snapshot.data![0].ingredients),
               ),
               Container(
-                margin: const EdgeInsets.all(5),
-                child: const Text("Steps"),
+                margin: const EdgeInsets.fromLTRB(5, 15, 5, 5),
+                child: const Text(
+                  style: TextStyle(fontSize: 18),
+                  "Steps",
+                ),
               ),
               Container(
                 margin: const EdgeInsets.all(5),
