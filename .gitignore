@@ -1,1 +1,6 @@
 testing
+
+# Contains google api keys
+google-services.json
+GoogleService-Info.plist
+firebase_options.dart
