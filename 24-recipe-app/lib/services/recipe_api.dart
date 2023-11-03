@@ -29,4 +29,15 @@ class RecipeApi {
     }
     return [Recipe.fromFirestore(snapshot.data()!, snapshot.id)];
   }
+
+  Future<List<Recipe>> findRecipesByName(String name) async {
+    final snapshot = await _firestore
+        .collection('recipe')
+        .where('name', isEqualTo: name)
+        .get();
+    final res = snapshot.docs.map((doc) {
+      return Recipe.fromFirestore(doc.data(), doc.id);
+    }).toList();
+    return res;
+  }
 }
