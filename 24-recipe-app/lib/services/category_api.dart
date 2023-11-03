@@ -33,4 +33,11 @@ class CategoryApi {
     final recipes = await RecipeApi().findRecipesByCategory(categoryId);
     return [CategoryWithRecipes.fromCategoryAndRecipes(category, recipes)];
   }
+
+  Future<List<Category>> findCategorySubset() async {
+    final snapshot = await _firestore.collection('category').limit(2).get();
+    return snapshot.docs.map((doc) {
+      return Category.fromFirestore(doc.data(), doc.id);
+    }).toList();
+  }
 }

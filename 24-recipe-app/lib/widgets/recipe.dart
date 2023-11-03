@@ -18,12 +18,13 @@ class RecipeWidget extends StatelessWidget {
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return const Text("Recipe not found");
           } else {
+            final recipe = snapshot.data![0];
             return Column(children: [
               Container(
                 margin: const EdgeInsets.all(5),
                 child: Text(
                   style: TextStyle(fontSize: 36),
-                  snapshot.data![0].name,
+                  recipe.name,
                 ),
               ),
               Container(
@@ -39,7 +40,7 @@ class RecipeWidget extends StatelessWidget {
               ),
               Container(
                 margin: const EdgeInsets.all(5),
-                child: Text(snapshot.data![0].ingredients),
+                child: Text(recipe.ingredients),
               ),
               Container(
                 margin: const EdgeInsets.fromLTRB(5, 15, 5, 5),
@@ -50,7 +51,7 @@ class RecipeWidget extends StatelessWidget {
               ),
               Container(
                 margin: const EdgeInsets.all(5),
-                child: Text(snapshot.data![0].steps),
+                child: Text(recipe.steps),
               ),
             ]);
           }
