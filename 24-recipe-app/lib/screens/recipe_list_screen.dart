@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_app/widgets/recipe_list.dart';
+import 'package:recipe_app/widgets/category_with_recipes.dart';
 import 'package:recipe_app/layout/screen_wrapper.dart';
 
 class RecipeListScreen extends StatelessWidget {
@@ -9,7 +9,7 @@ class RecipeListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenWrapper(
-      Center(child: RecipeList(categoryId)),
+      Center(child: CategoryWithRecipesWidget(categoryId)),
     );
   }
 }
