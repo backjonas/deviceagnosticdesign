@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:recipe_app/models/category.dart';
-import 'package:recipe_app/models/category_with_recipes.dart';
 import './recipe_api.dart';
 
 class CategoryApi {
@@ -22,16 +21,16 @@ class CategoryApi {
     return [Category.fromFirestore(snapshot.data()!, snapshot.id)];
   }
 
-  Future<List<CategoryWithRecipes>> findCategoryWithRecipes(
-      String categoryId) async {
+  Future<List<Category>> findCategory(String categoryId) async {
     final snapshot =
         await _firestore.collection('category').doc(categoryId).get();
     if (snapshot.data() == null) {
       return [];
     }
-    final category = Category.fromFirestore(snapshot.data()!, snapshot.id);
     final recipes = await RecipeApi().findRecipesByCategory(categoryId);
-    return [CategoryWithRecipes.fromCategoryAndRecipes(category, recipes)];
+    return [
+      Category.fromFirestoreWithRecipe(snapshot.data()!, snapshot.id, recipes)
+    ];
   }
 
   Future<List<Category>> findCategorySubset() async {

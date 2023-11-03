@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:recipe_app/models/category_with_recipes.dart';
+import 'package:recipe_app/models/category.dart';
 import 'package:recipe_app/services/category_api.dart';
 import 'package:recipe_app/widgets/recipe_list.dart';
 
-class CategoryWithRecipesWidget extends StatelessWidget {
+class CategoryWidget extends StatelessWidget {
   final String categoryId;
-  const CategoryWithRecipesWidget(this.categoryId);
+  const CategoryWidget(this.categoryId);
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List<CategoryWithRecipes>>(
-        future: CategoryApi().findCategoryWithRecipes(categoryId),
-        builder: (BuildContext context,
-            AsyncSnapshot<List<CategoryWithRecipes>> snapshot) {
+    return FutureBuilder<List<Category>>(
+        future: CategoryApi().findCategory(categoryId),
+        builder:
+            (BuildContext context, AsyncSnapshot<List<Category>> snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Text("Loading recipes");
           } else if (snapshot.hasError) {

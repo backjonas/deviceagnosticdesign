@@ -9,7 +9,7 @@ class RecipeListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenWrapper(
-      Center(child: CategoryWithRecipesWidget(categoryId)),
+      Center(child: CategoryWidget(categoryId)),
     );
   }
 }
