@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:recipe_app/widgets/search_field.dart';
 
 class ScreenWrapper extends StatelessWidget {
   final Widget widget;
@@ -10,7 +11,7 @@ class ScreenWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Center(child: Text("Search"))),
+      appBar: AppBar(title: Center(child: SearchFieldWidget())),
       body: widget,
       bottomNavigationBar: BottomAppBar(
           child: Row(
