@@ -7,18 +7,14 @@ class CategoryApi {
 
   Future<List<Category>> findAllCategories() async {
     final snapshot = await _firestore.collection('category').get();
-    return snapshot.docs.map((doc) {
-      return Category.fromFirestore(doc.data(), doc.id);
-    }).toList();
-  }
-
-  Future<List<Category>> findCategoryById(String categoryId) async {
-    final snapshot =
-        await _firestore.collection('category').doc(categoryId).get();
-    if (snapshot.data() == null) {
-      return [];
-    }
-    return [Category.fromFirestore(snapshot.data()!, snapshot.id)];
+    return Future.wait(snapshot.docs.map((doc) async {
+      final recipes = await RecipeApi().findRecipesByCategory(doc.id);
+      return Category.fromFirestoreWithRecipe(
+        doc.data(),
+        doc.id,
+        recipes,
+      );
+    }));
   }
 
   Future<List<Category>> findCategory(String categoryId) async {
@@ -39,8 +35,13 @@ class CategoryApi {
 
   Future<List<Category>> findCategorySubset() async {
     final snapshot = await _firestore.collection('category').limit(2).get();
-    return snapshot.docs
-        .map((doc) => Category.fromFirestore(doc.data(), doc.id))
-        .toList();
+    return Future.wait(snapshot.docs.map((doc) async {
+      final recipes = await RecipeApi().findRecipesByCategory(doc.id);
+      return Category.fromFirestoreWithRecipe(
+        doc.data(),
+        doc.id,
+        recipes,
+      );
+    }));
   }
 }

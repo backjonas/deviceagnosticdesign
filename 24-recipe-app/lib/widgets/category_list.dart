@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:recipe_app/services/category_api.dart';
 import 'package:recipe_app/models/category.dart';
 import 'package:recipe_app/widgets/category_card.dart';
+import 'package:recipe_app/widgets/title.dart';
 
 class CategoryList extends StatelessWidget {
   const CategoryList();
@@ -20,11 +21,16 @@ class CategoryList extends StatelessWidget {
             return const Text("No categories available");
           } else {
             return Expanded(
-                child: ListView(
-                    scrollDirection: Axis.vertical,
-                    children: snapshot.data!
-                        .map((category) => CategoryCardWidget(category))
-                        .toList()));
+              child: ListView(
+                scrollDirection: Axis.vertical,
+                children: [
+                  const TitleWidget("Categories"),
+                  ...snapshot.data!.map(
+                    (category) => CategoryCardWidget(category),
+                  )
+                ],
+              ),
+            );
           }
         });
   }
