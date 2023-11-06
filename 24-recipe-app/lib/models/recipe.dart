@@ -2,8 +2,8 @@ class Recipe {
   final String id;
   final String name;
   final String picture;
-  final String ingredients;
-  final String steps;
+  final List<String> ingredients;
+  final List<String> steps;
   final String categoryId;
 
   Recipe(
@@ -19,8 +19,8 @@ class Recipe {
       id: id,
       name: data['name'],
       picture: data['picture'],
-      ingredients: data['ingredients'],
-      steps: data['steps'],
+      ingredients: List<String>.from(data['ingredients']),
+      steps: List<String>.from(data['steps']),
       categoryId: data['category_id'],
     );
   }

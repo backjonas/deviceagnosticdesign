@@ -33,10 +33,14 @@ class RecipeWidget extends StatelessWidget {
                   "Ingredients",
                 ),
               ),
-              Container(
-                margin: const EdgeInsets.all(5),
-                child: Text(recipe.ingredients),
-              ),
+              Column(
+                  children: recipe.ingredients
+                      .map((ingredient) => Container(
+                            margin: const EdgeInsets.all(10),
+                            alignment: Alignment.centerLeft,
+                            child: Text("\u2022 $ingredient"),
+                          ))
+                      .toList()),
               Container(
                 margin: const EdgeInsets.fromLTRB(5, 15, 5, 5),
                 child: const Text(
@@ -44,10 +48,14 @@ class RecipeWidget extends StatelessWidget {
                   "Steps",
                 ),
               ),
-              Container(
-                margin: const EdgeInsets.all(5),
-                child: Text(recipe.steps),
-              ),
+              Column(
+                  children: recipe.steps
+                      .map((step) => Container(
+                            margin: const EdgeInsets.all(10),
+                            alignment: Alignment.centerLeft,
+                            child: Text("\u2022 $step"),
+                          ))
+                      .toList()),
             ]);
           }
         });
