@@ -6,11 +6,11 @@ class TitleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Center(
+      child: Container(
         margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-        child: const Text(
-          style: TextStyle(fontSize: 36),
-          "Featured recipes",
-        ));
+        child: Text(style: TextStyle(fontSize: 36), text),
+      ),
+    );
   }
 }
