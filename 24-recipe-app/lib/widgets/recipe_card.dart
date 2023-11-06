@@ -8,11 +8,16 @@ class RecipeCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        margin: const EdgeInsets.all(5),
-        child: ElevatedButton(
-          child: Text(recipe.name),
-          onPressed: () => context.go('/recipe/${recipe.id}'),
-        ));
+    return Card(
+        margin: const EdgeInsets.all(20),
+        child: InkWell(
+            onTap: () => context.go('/recipe/${recipe.id}'),
+            child: ListTile(
+              leading: Container(
+                  margin: EdgeInsets.all(10),
+                  width: 100,
+                  child: const Placeholder()),
+              title: Text(recipe.name),
+            )));
   }
 }

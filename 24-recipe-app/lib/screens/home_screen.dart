@@ -4,24 +4,23 @@ import 'package:recipe_app/layout/screen_wrapper.dart';
 import 'package:recipe_app/models/category.dart';
 import 'package:recipe_app/services/category_api.dart';
 import 'package:recipe_app/services/recipe_api.dart';
+import 'package:recipe_app/widgets/category_card.dart';
 import 'package:recipe_app/widgets/recipe_card.dart';
 import 'package:recipe_app/models/recipe.dart';
+import 'package:recipe_app/widgets/title.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen();
 
   @override
   Widget build(BuildContext context) {
-    return ScreenWrapper(
-      Center(
-          child: Column(
+    return ScreenWrapper(Center(
+      child: ListView(
+        scrollDirection: Axis.vertical,
         children: [
-          Container(
-              margin: const EdgeInsets.all(5),
-              child: const Text(
-                style: TextStyle(fontSize: 36),
-                "Featured recipes",
-              )),
+          const TitleWidget(
+            "Featured recipes",
+          ),
           FutureBuilder<List<Recipe>>(
               future: RecipeApi().findAllRecipes(),
               builder:
@@ -35,12 +34,9 @@ class HomeScreen extends StatelessWidget {
                 }
                 return RecipeCardWidget(snapshot.data![0]);
               }),
-          Container(
-              margin: const EdgeInsets.all(5),
-              child: const Text(
-                style: TextStyle(fontSize: 36),
-                "Featured categories",
-              )),
+          const TitleWidget(
+            "Featured categories",
+          ),
           FutureBuilder<List<Category>>(
               future: CategoryApi().findCategorySubset(),
               builder: (BuildContext context,
@@ -54,29 +50,18 @@ class HomeScreen extends StatelessWidget {
                 }
                 return Column(
                   children: snapshot.data!
-                      .map((category) => Column(
-                            children: [
-                              Container(
-                                margin: const EdgeInsets.all(5),
-                                child: Text(
-                                  style: TextStyle(fontSize: 36),
-                                  snapshot.data![0].name,
-                                ),
-                              ),
-                              Container(
-                                margin: const EdgeInsets.all(5),
-                                child: Placeholder(),
-                              ),
-                            ],
-                          ))
+                      .map((category) => CategoryCardWidget(category))
                       .toList(),
                 );
               }),
-          TextButton(
-              child: Text("View all categories"),
-              onPressed: () => context.go('/category')),
+          Container(
+            margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+            child: TextButton(
+                child: Text("View all categories"),
+                onPressed: () => context.go('/category')),
+          )
         ],
-      )),
-    );
+      ),
+    ));
   }
 }

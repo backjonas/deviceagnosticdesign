@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:recipe_app/services/category_api.dart';
 import 'package:recipe_app/models/category.dart';
+import 'package:recipe_app/widgets/category_card.dart';
 
 class CategoryList extends StatelessWidget {
   const CategoryList();
@@ -19,18 +19,11 @@ class CategoryList extends StatelessWidget {
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return const Text("No categories available");
           } else {
-            return Column(children: [
-              Container(
-                  margin: const EdgeInsets.only(top: 5, bottom: 10),
-                  child: const Text(
-                      'Click a category to view recipes belonging to that recipe')),
-              ...snapshot.data!.map((category) => Container(
-                  margin: const EdgeInsets.all(5),
-                  child: ElevatedButton(
-                    child: Text(category.name),
-                    onPressed: () => context.go('/category/${category.id}'),
-                  )))
-            ]);
+            return ListView(
+                scrollDirection: Axis.vertical,
+                children: snapshot.data!
+                    .map((category) => CategoryCardWidget(category))
+                    .toList());
           }
         });
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:recipe_app/services/recipe_api.dart';
 import 'package:recipe_app/models/recipe.dart';
+import 'package:recipe_app/widgets/title.dart';
 
 class RecipeWidget extends StatelessWidget {
   final String recipeId;
@@ -19,17 +20,11 @@ class RecipeWidget extends StatelessWidget {
             return const Text("Recipe not found");
           } else {
             final recipe = snapshot.data![0];
-            return Column(children: [
+            return ListView(scrollDirection: Axis.vertical, children: [
+              TitleWidget(recipe.name),
               Container(
-                margin: const EdgeInsets.all(5),
-                child: Text(
-                  style: TextStyle(fontSize: 36),
-                  recipe.name,
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.all(5),
-                child: Placeholder(),
+                margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                child: const Placeholder(),
               ),
               Container(
                 margin: const EdgeInsets.fromLTRB(5, 15, 5, 5),

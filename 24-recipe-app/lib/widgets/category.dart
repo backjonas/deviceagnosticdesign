@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:recipe_app/models/category.dart';
 import 'package:recipe_app/services/category_api.dart';
 import 'package:recipe_app/widgets/recipe_list.dart';
+import 'package:recipe_app/widgets/title.dart';
 
 class CategoryWidget extends StatelessWidget {
   final String categoryId;
@@ -21,22 +22,11 @@ class CategoryWidget extends StatelessWidget {
             return const Text("Category not found");
           } else {
             final category = snapshot.data![0];
-            return Column(children: [
+            return ListView(scrollDirection: Axis.vertical, children: [
+              TitleWidget(category.name),
               Container(
-                margin: const EdgeInsets.all(5),
-                child: Text(
-                  style: TextStyle(fontSize: 36),
-                  category.name,
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.all(5),
-                child: Placeholder(),
-              ),
-              Container(
-                  margin: const EdgeInsets.only(top: 5, bottom: 10),
-                  child:
-                      const Text('Click a recipe to view its full contents.')),
+                  margin: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                  child: const Placeholder()),
               RecipeListWidget(category.recipes)
             ]);
           }
