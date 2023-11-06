@@ -19,7 +19,7 @@ class HomeScreen extends StatelessWidget {
         scrollDirection: Axis.vertical,
         children: [
           const TitleWidget(
-            "Featured recipes",
+            "Featured recipe",
           ),
           FutureBuilder<List<Recipe>>(
               future: RecipeApi().findAllRecipes(),

@@ -1,16 +1,39 @@
-# recipe_app
+# recipe-app
 
-A new Flutter project.
+## Application description
 
-## Getting Started
+The application consists of recipes, with each recipe belonging to some category. The homepage shows some featured categories and a featured recipe at `/`. A list of all categories can be found at `category`, with a list of all recipes for a specific category at `/category/:categoryId`. Specific recipes are found at `/recipe/:recipeId` The recipes and categories are fetched from a firebase backend. Recipes can be searched by visiting `/search/:query`, or simply by using the search bar at the top of the application.
 
-This project is a starting point for a Flutter application.
+## Database structure
 
-A few resources to get you started if this is your first Flutter project:
+The database has the following structure
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+```
+category {
+  name: String
+  picture: String
+}
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+recipe {
+  category_id: String
+  name: String
+  picture: String
+  ingredients: String
+  steps: String
+}
+```
+
+## Dependencies
+
+The project has the following dependencies (include these in `pubspec.yaml`)
+
+```yaml
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  go_router: ^12.0.1
+  firebase_core: ^2.20.0
+  cloud_firestore: ^4.12.1
+```
