@@ -19,7 +19,8 @@ class CategoryCardWidget extends StatelessWidget {
             child: ListTile(
               leading: Container(
                   margin: EdgeInsets.all(10), width: 100, child: Placeholder()),
-              title: Text(category.name),
+              title: Container(
+                  margin: EdgeInsets.all(10), child: Text(category.name)),
               subtitle: size.width > Breakpoints.sm
                   ? ExpandedCategoryWidget(category.recipes)
                   : null,

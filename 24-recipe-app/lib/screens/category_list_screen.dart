@@ -8,9 +8,7 @@ class CategoryListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const ScreenWrapper(
-      Center(
-        child: CategoryList(),
-      ),
+      CategoryList(),
     );
   }
 }

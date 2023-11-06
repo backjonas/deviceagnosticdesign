@@ -20,16 +20,14 @@ class CategoryList extends StatelessWidget {
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return const Text("No categories available");
           } else {
-            return Expanded(
-              child: ListView(
-                scrollDirection: Axis.vertical,
-                children: [
-                  const TitleWidget("Categories"),
-                  ...snapshot.data!.map(
-                    (category) => CategoryCardWidget(category),
-                  )
-                ],
-              ),
+            return ListView(
+              scrollDirection: Axis.vertical,
+              children: [
+                const TitleWidget("Categories"),
+                ...snapshot.data!.map(
+                  (category) => CategoryCardWidget(category),
+                )
+              ],
             );
           }
         });

@@ -9,7 +9,7 @@ class CategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenWrapper(
-      Center(child: CategoryWidget(categoryId)),
+      CategoryWidget(categoryId),
     );
   }
 }

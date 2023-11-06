@@ -19,7 +19,7 @@ class SearchResultWidget extends StatelessWidget {
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
             return Text("No recipies found with name: $query");
           } else {
-            return Column(children: [
+            return ListView(scrollDirection: Axis.vertical, children: [
               Container(
                 margin: const EdgeInsets.all(5),
                 child: Text(

@@ -9,7 +9,7 @@ class SearchScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenWrapper(
-      Center(child: SearchResultWidget(query)),
+      SearchResultWidget(query),
     );
   }
 }
